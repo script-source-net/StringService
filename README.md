@@ -5,29 +5,29 @@ Stringer Services are able to show their Inventory of Strings and the
 price of the ordered Strings.
 
 <h2>Customers</h2>
-<h3>Order Strings</h3>
+<h3>Order Strings</h3>¯
 Per Website they can choose their label of the tennis racket and the 
 tennisracket itself.</br>
 They have the possibility to choose their weigh in lbs/kg for their cross
 and main Strings. </br>
-###Pay Service
+<h3>Pay Service</h3>
 Customers have the option to pay bei Credit Card, Paypal, Bitcoin or by 
 bill.
-###Bring in Service
+<h3>Bring in Service</h3>
 Customer can bring in their Rackets to the Stringers. For that the 
 Customer has the Option to choose from a Stringer near their Home.
-###Postal Service
+<h3>Postal Service</h3>
 Stringers send to Customer a package with return mark. It cost a little bit 
 more then the bring in.
 
-##Stringers
-###tbd
+<h2>Stringers</h2>
+<h3>tbd</h3>
 
-##Labels
-###tbd
+<h2>Labels</h2>
+<h3>tbd</h3>
 
-##Tennisrackets
-###tbd
+<h2>Tennisrackets</h2>
+<h3>tbd</h3>
 
 ##Strings
 ###Racketsetup
