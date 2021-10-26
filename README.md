@@ -1,11 +1,11 @@
-#StringService
+<h1>StringService</h1>
 This Project is to create an App with which Customers can order 
 their Strings for their Tennisrackets on a Stringer Service.
 Stringer Services are able to show their Inventory of Strings and the
 price of the ordered Strings.
 
-##Customers
-###Order Strings
+<h2>Customers</h2>
+<h3>Order Strings</h3>
 Per Website they can choose their label of the tennis racket and the 
 tennisracket itself.</br>
 They have the possibility to choose their weigh in lbs/kg for their cross
