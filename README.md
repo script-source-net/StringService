@@ -30,5 +30,7 @@ more then the bring in.
 ###tbd
 
 ##Strings
-###tbd
+###Racketsetup
+Cuatomers can choose from the Stringers Inventory
+
 
