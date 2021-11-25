@@ -30,15 +30,27 @@ public class CustomerManagement {
                     System.out.println(UserMenu.chooseCustomer);
                     break;
                 case 3:
-                    String selCustomers = "SELECT * FROM tbl_customers;";
+                    String selCustomers = "SELECT t.customers_id,\n" +
+                            "       t.customers_firstname,\n" +
+                            "       t.customers_lastname,\n" +
+                            "       t.customers_adresse,\n" +
+                            "       t.customers_adresse_nr,\n" +
+                            "       tc.city_plz,\n" +
+                            "       tc.city_name,\n" +
+                            "       t.customers_mail,\n" +
+                            "       t.customers_phone\n" +
+                            "FROM `script-source.net`.tbl_customers t\n" +
+                            "INNER JOIN tbl_cities tc on t.city_id = tc.city_id;";
                     ArrayList<Customer> customerList = con.SelectCustomers(selCustomers);
                     for (Customer c : customerList){
-                        System.out.printf("%d %s %s %s %s %s %s%n",
-                                customerList.indexOf(c),
+                        System.out.printf("**********************************\nKundennummer: %d\n%s %s\n%s %s\n%s %s\n%s\n+41%d%n\n",
+                                c.getCustomerNumber(),
                                 c.getLastname(),
                                 c.getFirstname(),
                                 c.getCustomerAdresse(),
                                 c.getCustomerAdresseNr(),
+                                c.getCustomerPLZ(),
+                                c.getCustomerCity(),
                                 c.getCustomerMail(),
                                 c.getCustomerPhone());
                     }
@@ -49,20 +61,6 @@ public class CustomerManagement {
                      */
                     break;
                 case 4:
-                    String customers = "";
-                    for(Customer customer : cList){
-                        customers += "('" + customer.getLastname() + "','" + customer.getFirstname() + "'),";
-                    }
-                    String table = "tbl_customers (customers_lastname, customers_firstname) Values ";
-                    con.InsertValuesToTable(customers,"tbl_customers");
-                    break;
-                case 5:
-
-                    break;
-                case 6:
-
-                    break;
-                case 7:
                     runApp = false;
                     break;
                 default:

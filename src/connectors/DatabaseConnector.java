@@ -1,6 +1,6 @@
 package connectors;
 
-import com.mysql.cj.protocol.Resultset;
+
 import controller.Customer;
 
 import java.sql.*;
@@ -43,12 +43,15 @@ public class DatabaseConnector {
             Statement statement = con.createStatement();
             resultset = statement.executeQuery(select);
             while (resultset.next()) {
-                retSelect.add(new Customer(resultset.getString("customers_lastname"),
+                retSelect.add(new Customer(resultset.getInt("customers_id"),
+                        resultset.getString("customers_lastname"),
                         resultset.getString("customers_firstname"),
-                        resultset.getString("customers_phone"),
+                        resultset.getInt("customers_phone"),
                         resultset.getString("customers_mail"),
                         resultset.getString("customers_adresse"),
-                        resultset.getString("customers_adresse_nr")));
+                        resultset.getString("customers_adresse_nr"),
+                        resultset.getString("city_plz"),
+                        resultset.getString("city_name")));
             }
             return retSelect;
         } catch (SQLException e) {

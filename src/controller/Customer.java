@@ -2,7 +2,8 @@ package controller;
 
 public class Customer extends Person{
     int customerNumber = 0;
-    String customerMail, customerAdresse, customerAdresseNr, customerPhone;
+    int customerPhone = 0;
+    String customerMail, customerAdresse, customerAdresseNr, customerPLZ, customerCity;
     public Customer(){
 
     }
@@ -10,9 +11,16 @@ public class Customer extends Person{
         this.setFirstname(firstName);
         this.setLastname(lastName);
     }
-    public Customer (String lastName, String firstName,String customerPhone,String customerMail, String customerAdresse, String customerAdresseNr){
+    public Customer (int customerID, String lastName, String firstName,int customerPhone,String customerMail, String customerAdresse, String customerAdresseNr, String customerPLZ, String customerCity){
+        this.setCustomerNumber(customerID);
         this.setFirstname(firstName);
         this.setLastname(lastName);
+        this.setCustomerPhone(customerPhone);
+        this.setCustomerAdresse(customerAdresse);
+        this.setCustomerAdresseNr(customerAdresseNr);
+        this.setCustomerMail(customerMail);
+        this.setCustomerCity(customerCity);
+        this.setCustomerPLZ(customerPLZ);
     }
 
     public int getCustomerNumber() {
@@ -51,12 +59,28 @@ public class Customer extends Person{
         return this;
     }
 
-    public String getCustomerPhone() {
+    public int getCustomerPhone() {
         return customerPhone;
     }
 
-    public Customer setCustomerPhone(String customerPhone) {
+    public Customer setCustomerPhone(int customerPhone) {
         this.customerPhone = customerPhone;
         return this;
+    }
+
+    public String getCustomerPLZ() {
+        return customerPLZ;
+    }
+
+    public void setCustomerPLZ(String customerPLZ) {
+        this.customerPLZ = customerPLZ;
+    }
+
+    public String getCustomerCity() {
+        return customerCity;
+    }
+
+    public void setCustomerCity(String customerCity) {
+        this.customerCity = customerCity;
     }
 }
