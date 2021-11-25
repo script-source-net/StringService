@@ -18,7 +18,8 @@ public interface UserMenu {
                 "[1] -> Neuen Kunden erfassen\n" +
                 "[2] -> Kundendaten anpassen\n" +
                 "[3] -> Kundendaten ausgeben\n" +
-                "[4] -> zurück\n";
+                "[4] -> Daten in Datenbankschreiben\n" +
+                "[5] -> zurück\n";
 
     String newCustomerLastName= "Lastname: ";
     String newCustomerFirstName = "Firstname: ";
