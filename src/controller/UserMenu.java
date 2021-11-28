@@ -18,7 +18,8 @@ public interface UserMenu {
                 "[1] -> Neuen Kunden erfassen\n" +
                 "[2] -> Kundendaten anpassen\n" +
                 "[3] -> Kundendaten ausgeben\n" +
-                "[4] -> zurück\n";
+                "[4] -> Kundendaten löschen\n" +
+                "[5] -> zurück\n";
 
     String customerLastname = "Nachname: ";
     String customerFirstname = "Vorname: ";
@@ -43,4 +44,6 @@ public interface UserMenu {
             "[8] -> Telefon Nr.\n"+
             "[9] -> Mailadresse\n"+
             "[10] -> zurück\n";
+    String deleteUser = "Welche Kundendaten sollen gelöscht werden?\n"+
+            "(Bitte Kundennummer angeben)";
 }

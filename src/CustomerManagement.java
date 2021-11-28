@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class CustomerManagement {
     Scanner sc = new Scanner(System.in);
-
+    DatabaseConnector con = new DatabaseConnector();
+    int selectedCustomer = 0;
     public CustomerManagement(){
-        DatabaseConnector con = new DatabaseConnector();
         boolean runApp = true;
         while (runApp) {
             System.out.println(UserMenu.customerManagementMenu);
@@ -20,18 +20,18 @@ public class CustomerManagement {
                     con.InsertCustomer(NewCustomer());
                     break;
                 case 2:
-                    ArrayList<Customer> cList = con.SelectCustomer2Change(SQL_Statements.selectCustomersChangeList);
+                    ArrayList<Customer> cList = con.SelectCustomer2Change(SQL_Statements.selectCustomerShortList);
                     for (Customer c : cList){
                         System.out.println("Kundennummer: " + c.getCustomerNumber() +
                                 " | " + c.getLastname() +
                                 " | " + c.getFirstname());
                     }
                     System.out.println(UserMenu.chooseCustomer);
-                    int selectedCustomer = sc.nextInt();
+                    selectedCustomer = sc.nextInt();
                     con.UpdateCustomer(NewCustomer(),selectedCustomer);
                     break;
                 case 3:
-                    ArrayList<Customer> customerList = con.SelectCustomers(SQL_Statements.selectCustomers);
+                ArrayList<Customer> customerList = CustomerList(SQL_Statements.selectCustomers);
                     for (Customer c : customerList){
                         System.out.printf("**********************************\nKundennummer: %d\n%s %s\n%s %s\n%s %s\n%s\n+41%d%n\n",
                                 c.getCustomerNumber(),
@@ -46,6 +46,17 @@ public class CustomerManagement {
                     }
                     break;
                 case 4:
+                    ArrayList<Customer> customerArrayList = con.SelectCustomer2Change(SQL_Statements.selectCustomerShortList);
+                    for (Customer c : customerArrayList){
+                        System.out.println("Kundennummer: " + c.getCustomerNumber() +
+                                " | " + c.getLastname() +
+                                " | " + c.getFirstname());
+                    }
+                    System.out.println(UserMenu.chooseCustomer);
+                    selectedCustomer = sc.nextInt();
+                    con.DeleteCustomer(selectedCustomer);
+                    break;
+                case 5:
                     runApp = false;
                     break;
                 default:
@@ -75,4 +86,8 @@ public class CustomerManagement {
         return new Customer(lastName,firstName,phone,mail,adresse,adresseNr,plz,city_name);
     }
 
+    private ArrayList CustomerList(String sql_statements){
+        ArrayList<Customer> customerList = con.SelectCustomers(sql_statements);
+        return customerList;
+    }
 }

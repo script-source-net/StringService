@@ -31,7 +31,7 @@ public class DatabaseConnector implements SQL_Statements {
                 DatabaseData.getUSER(),
                 DatabaseData.getPASSWORD())
         ){
-            System.out.printf("Connection OK");
+            System.out.println("Connection OK");
             PreparedStatement ps = con.prepareStatement(selectCityID);
             ps.setString(1,customer.getCustomerCity());
             ps.setInt(2,customer.getCustomerPLZ());
@@ -119,7 +119,7 @@ public class DatabaseConnector implements SQL_Statements {
                 DatabaseData.getUSER(),
                 DatabaseData.getPASSWORD())
         ){
-            System.out.printf("Connection OK");
+            System.out.println("Connection OK");
             PreparedStatement ps = con.prepareStatement(selectCityID);
             ps.setString(1,customer.getCustomerCity());
             ps.setInt(2,customer.getCustomerPLZ());
@@ -138,6 +138,23 @@ public class DatabaseConnector implements SQL_Statements {
             prepStmt.setInt(7,city_id);
             prepStmt.setInt(8,customer_id);
             prepStmt.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("Connection NOK");
+            e.printStackTrace();
+        }
+    }
+
+    public void DeleteCustomer(int customerID){
+        try (Connection con = DriverManager.getConnection(
+                DatabaseData.getURL(),
+                DatabaseData.getUSER(),
+                DatabaseData.getPASSWORD())
+        ){
+            System.out.println("Connection OK");
+            PreparedStatement ps = con.prepareStatement(deleteCustomerByID);
+            ps.setInt(1,customerID);
+            ps.execute();
         } catch (SQLException e){
             System.out.println(e.getMessage());
             System.out.println("Connection NOK");
