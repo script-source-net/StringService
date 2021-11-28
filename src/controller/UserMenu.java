@@ -22,5 +22,11 @@ public interface UserMenu {
 
     String newCustomerLastName= "Lastname: ";
     String newCustomerFirstName = "Firstname: ";
+    String newCustomerAdresse = "Adresse: ";
+    String newCustomerAdresseNr = "Adresse Nr.: ";
+    String newCustomerPhone = "Phone Nr.: ";
+    String newCustomerMail = "Mailadresse: ";
+    String newCustomerCityPostalCode = "PLZ: ";
+    String newCustomerCityName = "City Name: ";
     String chooseCustomer = "Welche Kundendaten wollen sie anpassen?";
 }

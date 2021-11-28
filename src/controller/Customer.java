@@ -3,7 +3,8 @@ package controller;
 public class Customer extends Person{
     int customerNumber = 0;
     int customerPhone = 0;
-    String customerMail, customerAdresse, customerAdresseNr, customerPLZ, customerCity;
+    int customerPLZ;
+    String customerMail, customerAdresse,customerAdresseNr, customerCity;
     public Customer(){
 
     }
@@ -11,8 +12,18 @@ public class Customer extends Person{
         this.setFirstname(firstName);
         this.setLastname(lastName);
     }
-    public Customer (int customerID, String lastName, String firstName,int customerPhone,String customerMail, String customerAdresse, String customerAdresseNr, String customerPLZ, String customerCity){
+    public Customer (int customerID, String lastName, String firstName,int customerPhone,String customerMail, String customerAdresse, String customerAdresseNr, int customerPLZ, String customerCity){
         this.setCustomerNumber(customerID);
+        this.setFirstname(firstName);
+        this.setLastname(lastName);
+        this.setCustomerPhone(customerPhone);
+        this.setCustomerAdresse(customerAdresse);
+        this.setCustomerAdresseNr(customerAdresseNr);
+        this.setCustomerMail(customerMail);
+        this.setCustomerCity(customerCity);
+        this.setCustomerPLZ(customerPLZ);
+    }
+    public Customer (String lastName, String firstName,int customerPhone,String customerMail, String customerAdresse, String customerAdresseNr, int customerPLZ, String customerCity){
         this.setFirstname(firstName);
         this.setLastname(lastName);
         this.setCustomerPhone(customerPhone);
@@ -68,11 +79,11 @@ public class Customer extends Person{
         return this;
     }
 
-    public String getCustomerPLZ() {
+    public int getCustomerPLZ() {
         return customerPLZ;
     }
 
-    public void setCustomerPLZ(String customerPLZ) {
+    public void setCustomerPLZ(int customerPLZ) {
         this.customerPLZ = customerPLZ;
     }
 

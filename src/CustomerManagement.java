@@ -1,17 +1,15 @@
 import connectors.DatabaseConnector;
 import controller.Customer;
+import controller.SQL_Statements;
 import controller.UserMenu;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerManagement {
     Scanner sc = new Scanner(System.in);
-    int chooseOption;
 
-    public CustomerManagement() throws SQLException {
-        ArrayList<Customer> cList = new ArrayList();
+    public CustomerManagement(){
         DatabaseConnector con = new DatabaseConnector();
         boolean runApp = true;
         while (runApp) {
@@ -23,25 +21,26 @@ public class CustomerManagement {
                     String lastName = sc.next();
                     System.out.println(UserMenu.newCustomerFirstName);
                     String firstName = sc.next();
-                    Customer cust = createCustomer(lastName,firstName);
-                    cList.add(cust);
+                    System.out.println(UserMenu.newCustomerAdresse);
+                    String adresse = sc.next();
+                    System.out.println(UserMenu.newCustomerAdresseNr);
+                    String adresseNr = sc.next();
+                    System.out.println(UserMenu.newCustomerCityPostalCode);
+                    int plz = sc.nextInt();
+                    System.out.println(UserMenu.newCustomerCityName);
+                    String city_name = sc.next();
+                    System.out.println(UserMenu.newCustomerPhone);
+                    int phone = sc.nextInt();
+                    System.out.println(UserMenu.newCustomerMail);
+                    String mail = sc.next();
+                    Customer cust = new Customer(lastName,firstName,phone,mail,adresse,adresseNr,plz,city_name);
+                    con.InsertCustomer(cust);
                     break;
                 case 2:
                     System.out.println(UserMenu.chooseCustomer);
                     break;
                 case 3:
-                    String selCustomers = "SELECT t.customers_id,\n" +
-                            "       t.customers_firstname,\n" +
-                            "       t.customers_lastname,\n" +
-                            "       t.customers_adresse,\n" +
-                            "       t.customers_adresse_nr,\n" +
-                            "       tc.city_plz,\n" +
-                            "       tc.city_name,\n" +
-                            "       t.customers_mail,\n" +
-                            "       t.customers_phone\n" +
-                            "FROM `script-source.net`.tbl_customers t\n" +
-                            "INNER JOIN tbl_cities tc on t.city_id = tc.city_id;";
-                    ArrayList<Customer> customerList = con.SelectCustomers(selCustomers);
+                    ArrayList<Customer> customerList = con.SelectCustomers(SQL_Statements.selectCustomers);
                     for (Customer c : customerList){
                         System.out.printf("**********************************\nKundennummer: %d\n%s %s\n%s %s\n%s %s\n%s\n+41%d%n\n",
                                 c.getCustomerNumber(),
@@ -68,15 +67,6 @@ public class CustomerManagement {
                     break;
             }
         }
-
-
-
-    }
-
-
-
-    public Customer createCustomer(String lastName, String firstName){
-        return new Customer(lastName, firstName);
     }
 
 }

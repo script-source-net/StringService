@@ -2,11 +2,12 @@ package connectors;
 
 
 import controller.Customer;
+import controller.SQL_Statements;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DatabaseConnector {
+public class DatabaseConnector implements SQL_Statements {
 
     public DatabaseConnector() {
         DatabaseData conData = new DatabaseData();
@@ -24,15 +25,42 @@ public class DatabaseConnector {
         }
     }
 
-    public void InsertValuesToTable(String values, String table) {
-        String prepare = "INSERT INTO ";
-        String prepTable = table;
-        String prepValues = values;
+    public void InsertCustomer(Customer customer) {
+        String query = insertCustomers;
+        try (Connection con = DriverManager.getConnection(
+                DatabaseData.getURL(),
+                DatabaseData.getUSER(),
+                DatabaseData.getPASSWORD())
+        ){
+            System.out.printf("Connection OK");
+            PreparedStatement ps = con.prepareStatement(selectCityID);
+            ps.setString(1,customer.getCustomerCity());
+            ps.setInt(2,customer.getCustomerPLZ());
+            ResultSet rs = ps.executeQuery();
+            int city_id =0;
+            while (rs.next()){
+                city_id = rs.getInt("city_id");
+            }
+            PreparedStatement prepStmt = con.prepareStatement(query);
+            prepStmt.setString(1,customer.getLastname());
+            prepStmt.setString(2, customer.getFirstname());
+            prepStmt.setInt(3, customer.getCustomerPhone());
+            prepStmt.setString(4, customer.getCustomerMail());
+            prepStmt.setString(5,customer.getCustomerAdresse());
+            prepStmt.setString(6,customer.getCustomerAdresseNr());
+            prepStmt.setInt(7,city_id);
+            prepStmt.execute();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("Connection NOK");
+            e.printStackTrace();
+        }
+
+
     }
 
     public ArrayList SelectCustomers(String select) {
         ArrayList<Customer> retSelect = new ArrayList<>();
-        DatabaseData conData = new DatabaseData();
         ResultSet resultset = null;
         try (Connection con = DriverManager.getConnection(
                 DatabaseData.getURL(),
@@ -50,7 +78,7 @@ public class DatabaseConnector {
                         resultset.getString("customers_mail"),
                         resultset.getString("customers_adresse"),
                         resultset.getString("customers_adresse_nr"),
-                        resultset.getString("city_plz"),
+                        resultset.getInt("city_plz"),
                         resultset.getString("city_name")));
             }
             return retSelect;
