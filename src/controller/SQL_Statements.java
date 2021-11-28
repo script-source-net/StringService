@@ -18,5 +18,30 @@ public interface SQL_Statements {
             "       t.customers_phone " +
             "FROM `script-source.net`.tbl_customers t " +
             "INNER JOIN tbl_cities tc on t.city_id = tc.city_id;";
+    String selectCustomersChangeList = "SELECT t.customers_id," +
+            "       t.customers_lastname," +
+            "       t.customers_firstname" +
+            " FROM `script-source.net`.tbl_customers t;";
 
+    String updateCustomerByID ="UPDATE tbl_customer" +
+            "SET customers_lastname = ?," +
+            "    customers_firstname = ?," +
+            "    customers_phone = ?," +
+            "    customers_mail = ?," +
+            "    customers_adresse = ?," +
+            "    customers_adresse_nr = ?," +
+            "    city_id = ?" +
+            "WHERE customers_id = ?;";
+
+    String selectCustomerByID = "SELECT t.customers_lastname,\n" +
+            "       t.customers_firstname,\n" +
+            "       t.customers_phone,\n" +
+            "       t.customers_mail,\n" +
+            "       t.customers_adresse,\n" +
+            "       t.customers_adresse_nr,\n" +
+            "       tc.city_plz,\n" +
+            "       tc.city_name\n" +
+            "FROM tbl_customers t\n" +
+            "INNER JOIN tbl_cities tc on t.city_id = tc.city_id\n" +
+            "WHERE customers_id = ?;";
 }

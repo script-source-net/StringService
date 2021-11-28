@@ -17,27 +17,18 @@ public class CustomerManagement {
             int cmMenu = sc.nextInt();
             switch (cmMenu){
                 case 1:
-                    System.out.println(UserMenu.newCustomerLastName);
-                    String lastName = sc.next();
-                    System.out.println(UserMenu.newCustomerFirstName);
-                    String firstName = sc.next();
-                    System.out.println(UserMenu.newCustomerAdresse);
-                    String adresse = sc.next();
-                    System.out.println(UserMenu.newCustomerAdresseNr);
-                    String adresseNr = sc.next();
-                    System.out.println(UserMenu.newCustomerCityPostalCode);
-                    int plz = sc.nextInt();
-                    System.out.println(UserMenu.newCustomerCityName);
-                    String city_name = sc.next();
-                    System.out.println(UserMenu.newCustomerPhone);
-                    int phone = sc.nextInt();
-                    System.out.println(UserMenu.newCustomerMail);
-                    String mail = sc.next();
-                    Customer cust = new Customer(lastName,firstName,phone,mail,adresse,adresseNr,plz,city_name);
-                    con.InsertCustomer(cust);
+                    con.InsertCustomer(NewCustomer());
                     break;
                 case 2:
+                    ArrayList<Customer> cList = con.SelectCustomer2Change(SQL_Statements.selectCustomersChangeList);
+                    for (Customer c : cList){
+                        System.out.println("Kundennummer: " + c.getCustomerNumber() +
+                                " | " + c.getLastname() +
+                                " | " + c.getFirstname());
+                    }
                     System.out.println(UserMenu.chooseCustomer);
+                    int selectedCustomer = sc.nextInt();
+                    con.UpdateCustomer(NewCustomer(),selectedCustomer);
                     break;
                 case 3:
                     ArrayList<Customer> customerList = con.SelectCustomers(SQL_Statements.selectCustomers);
@@ -53,11 +44,6 @@ public class CustomerManagement {
                                 c.getCustomerMail(),
                                 c.getCustomerPhone());
                     }
-                    /*
-                    for(Customer customer : cList){
-                        System.out.println(cList.indexOf(customer) + " " + customer.getLastname()+ " " + customer.getFirstname());
-                    }
-                     */
                     break;
                 case 4:
                     runApp = false;
@@ -67,6 +53,26 @@ public class CustomerManagement {
                     break;
             }
         }
+    }
+
+    private Customer NewCustomer(){
+        System.out.println(UserMenu.customerLastname);
+        String lastName = sc.next();
+        System.out.println(UserMenu.customerFirstname);
+        String firstName = sc.next();
+        System.out.println(UserMenu.customerAdresse);
+        String adresse = sc.next();
+        System.out.println(UserMenu.customerAdresseNr);
+        String adresseNr = sc.next();
+        System.out.println(UserMenu.customerCityPostalCode);
+        int plz = sc.nextInt();
+        System.out.println(UserMenu.customerCityName);
+        String city_name = sc.next();
+        System.out.println(UserMenu.customerPhone);
+        int phone = sc.nextInt();
+        System.out.println(UserMenu.customerMail);
+        String mail = sc.next();
+        return new Customer(lastName,firstName,phone,mail,adresse,adresseNr,plz,city_name);
     }
 
 }

@@ -34,6 +34,12 @@ public class Customer extends Person{
         this.setCustomerPLZ(customerPLZ);
     }
 
+    public Customer (int customerID, String lastName, String firstName){
+        this.setCustomerNumber(customerID);
+        this.setFirstname(firstName);
+        this.setLastname(lastName);
+    }
+
     public int getCustomerNumber() {
         return customerNumber;
     }

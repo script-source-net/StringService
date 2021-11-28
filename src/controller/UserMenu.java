@@ -20,13 +20,27 @@ public interface UserMenu {
                 "[3] -> Kundendaten ausgeben\n" +
                 "[4] -> zurück\n";
 
-    String newCustomerLastName= "Lastname: ";
-    String newCustomerFirstName = "Firstname: ";
-    String newCustomerAdresse = "Adresse: ";
-    String newCustomerAdresseNr = "Adresse Nr.: ";
-    String newCustomerPhone = "Phone Nr.: ";
-    String newCustomerMail = "Mailadresse: ";
-    String newCustomerCityPostalCode = "PLZ: ";
-    String newCustomerCityName = "City Name: ";
-    String chooseCustomer = "Welche Kundendaten wollen sie anpassen?";
+    String customerLastname = "Nachname: ";
+    String customerFirstname = "Vorname: ";
+    String customerAdresse = "Adresse: ";
+    String customerAdresseNr = "Adresse Nr.: ";
+    String customerPhone = "Telefon Nr.: ";
+    String customerMail = "Mailadresse: ";
+    String customerCityPostalCode = "PLZ: ";
+    String customerCityName = "Ortschaft: ";
+    String chooseCustomer = "Welcher Kunde soll angepasst werden?\n"+
+            "(Kundennummer eingeben)";
+    String changeCustomerData ="**********************************\n"+
+            "Welche Daten sollen angepasst werden?\n" +
+            "**********************************\n"+
+            "[1] -> Alle Daten\n"+
+            "[2] -> Nachname\n"+
+            "[3] -> Vorname\n"+
+            "[4] -> Adresse\n"+
+            "[5] -> Adresse Nr\n"+
+            "[6] -> PLZ\n"+
+            "[7] -> Ortschaft\n"+
+            "[8] -> Telefon Nr.\n"+
+            "[9] -> Mailadresse\n"+
+            "[10] -> zurück\n";
 }
